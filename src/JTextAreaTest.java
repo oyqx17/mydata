@@ -44,7 +44,7 @@ public class JTextAreaTest {
 
     private static String original;
 
-    private static final String sFilePath = "E:\\workspace\\easyRemember\\assets\\out.txt";
+    private static final String sFilePath = "E:\\workspace\\myphone\\assets\\out.txt";
 
     private static void initFrame() {
         JFrame.setDefaultLookAndFeelDecorated(true);
