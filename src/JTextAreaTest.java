@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -17,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -37,6 +39,7 @@ public class JTextAreaTest {
     private static JButton button, button2;
 
     private static JFrame frame;
+    private static JTextField jtext;
 
     private static JTextArea textAreal, textArea2;
 
@@ -44,13 +47,18 @@ public class JTextAreaTest {
 
     private static String original;
 
-    private static final String sFilePath = "E:\\workspace\\myphone\\assets\\out.txt";
+    private static final String BASEPATH = "E:\\workspace\\myphone\\assets\\";// 基本路径
+
+    private static String extraPath = "";// 文件名
 
     private static void initFrame() {
         JFrame.setDefaultLookAndFeelDecorated(true);
+        jtext=new JTextField(1);//标题栏,文件输出名
         button = new JButton("添加");
         button2 = new JButton("完成");
         frame = new JFrame("JTextArea Test");
+//        GridLayout gridLayout = new GridLayout(3, false);
+        
         frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         String text = "";
@@ -68,6 +76,7 @@ public class JTextAreaTest {
         textArea2.setLineWrap(true);
         frame.add(scrollPaneadd);
         frame.add(scrollPane);
+        frame.add(jtext);
         frame.add(button);
         frame.add(button2);
         frame.pack();
@@ -79,7 +88,8 @@ public class JTextAreaTest {
          * 初始化数据,先读取文件截取字符串
          */
         try {
-            FileInputStream is = new FileInputStream(sFilePath);
+            FileInputStream is = new FileInputStream(JTextAreaTest.BASEPATH
+                    + extraPath);
             StringBuffer sb = new StringBuffer();
             BufferedReader br = new BufferedReader(new InputStreamReader(is,
                     "utf-8"));
@@ -90,7 +100,6 @@ public class JTextAreaTest {
             original = sb.toString();
             // String deal=original.substring(1, original.length()-1);
             // System.out.println(deal);
-
             if (original.length() < 1) {
                 jsaori = jsa;
             } else {
@@ -119,20 +128,15 @@ public class JTextAreaTest {
                         output = jsaori.toString();
                         System.out.println(output);
 
-                        // byte[] buff = new byte[] {};
                         try {
                             String aa = output;
-                            // buff = aa.getBytes();
 
                             OutputStreamWriter out = new OutputStreamWriter(
-                                    new FileOutputStream(sFilePath), "UTF-8");
+                                    new FileOutputStream(JTextAreaTest.BASEPATH
+                                            + extraPath), "UTF-8");
                             out.write(aa);
                             out.flush();
                             out.close();
-                            // FileOutputStream out = new FileOutputStream(
-                            // "E:\\workspace\\easyRemember\\assets\\out.txt");
-                            // "D:\\out.txt");//E:\workspace\easyRemember\assets
-                            // out.write(buff, 0, buff.length);
 
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
@@ -160,7 +164,6 @@ public class JTextAreaTest {
                             jsaori.put(job);
                             i++;
                         } catch (JSONException e1) {
-                            // TODO Auto-generated catch block
                             e1.printStackTrace();
                         }
                         textAreal.setText("");// 清空
@@ -172,21 +175,18 @@ public class JTextAreaTest {
 
             @Override
             public void removeUpdate(DocumentEvent arg0) {
-                // TODO Auto-generated method stub
                 System.out.println("removeUpdate");
 
             }
 
             @Override
             public void insertUpdate(DocumentEvent arg0) {
-                // TODO Auto-generated method stub
                 System.out.println("insertUpdate");
 
             }
 
             @Override
             public void changedUpdate(DocumentEvent arg0) {
-                // TODO Auto-generated method stub
                 System.out.println("changedUpdate");
 
             }
