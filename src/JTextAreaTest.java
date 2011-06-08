@@ -49,11 +49,11 @@ public class JTextAreaTest {
 
     private static final String BASEPATH = "E:\\workspace\\myphone\\assets\\";// 基本路径
 
-    private static String extraPath = "";// 文件名
+    private static String extraPath = "out.txt";// 文件名
 
     private static void initFrame() {
         JFrame.setDefaultLookAndFeelDecorated(true);
-        jtext=new JTextField(1);//标题栏,文件输出名
+      //  jtext=new JTextField(1);//标题栏,文件输出名
         button = new JButton("添加");
         button2 = new JButton("完成");
         frame = new JFrame("JTextArea Test");
@@ -62,21 +62,25 @@ public class JTextAreaTest {
         frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         String text = "";
-        textAreal = new JTextArea(text, 5, 10);
+        textAreal = new JTextArea(text, 4, 10);
         textAreal.setPreferredSize(new Dimension(100, 100));
         scrollPaneadd = new JScrollPane(textAreal,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        textArea2 = new JTextArea(text, 20, 30);
-        textArea2.setPreferredSize(new Dimension(200, 200));
+        textArea2=new JTextArea(text, 30, 40);
+//        JScrollPane scrollPane = new JScrollPane(textArea2);
+        
         scrollPane = new JScrollPane(textArea2,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         textAreal.setLineWrap(true);
         textArea2.setLineWrap(true);
+//        JTextArea textArea = new JTextArea();
+//        JScrollPane scrollPane = new JScrollPane(textArea);
+//        content.add(scrollPane);
         frame.add(scrollPaneadd);
         frame.add(scrollPane);
-        frame.add(jtext);
+       // frame.add(jtext);
         frame.add(button);
         frame.add(button2);
         frame.pack();
