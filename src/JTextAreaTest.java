@@ -56,7 +56,7 @@ public class JTextAreaTest {
       //  jtext=new JTextField(1);//标题栏,文件输出名
         button = new JButton("添加");
         button2 = new JButton("完成");
-        frame = new JFrame("JTextArea Test");
+        frame = new JFrame("说明,在E:\\workspace\\myphone\\assets\\out.txt需要存在");
 //        GridLayout gridLayout = new GridLayout(3, false);
         
         frame.setLayout(new FlowLayout());
